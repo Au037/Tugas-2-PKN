@@ -17,9 +17,9 @@
             --text-sub: #00695c;
             --shadow-color: rgba(77, 208, 225, 0.3);
             --bubble-color: rgba(38, 198, 218, 0.35);
+            --bar-bg: #e0f2f1;
         }
 
-        /* Deep Sea Mode (Dark Mode) Theme Variables */
         body.deep-sea-mode {
             --bg-color: #002333;
             --card-bg: #003547;
@@ -30,6 +30,7 @@
             --text-sub: #b2ebf2;
             --shadow-color: rgba(0, 0, 0, 0.5);
             --bubble-color: rgba(77, 208, 225, 0.25);
+            --bar-bg: #002b3d;
         }
 
         * {
@@ -50,7 +51,6 @@
             overflow-x: hidden;
         }
 
-        /* Container Animasi Gelembung Laut */
         .bubbles-container {
             position: fixed;
             top: 0;
@@ -80,23 +80,12 @@
         .bubble:nth-child(7) { width: 15px; height: 15px; left: 90%; animation-duration: 4s; animation-delay: 2s; }
 
         @keyframes rise {
-            0% {
-                transform: translateY(0) scale(0.8);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.8;
-            }
-            80% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-110vh) scale(1.2);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
         }
 
-        /* Tombol Switch Deep Sea Mode */
         .theme-toggle-btn {
             position: fixed;
             top: 15px;
@@ -202,7 +191,7 @@
         .section-title {
             font-weight: 700;
             color: var(--ocean-primary);
-            margin-top: 1rem;
+            margin-top: 1.2rem;
             margin-bottom: 0.3rem;
             font-size: 0.95rem;
             text-transform: uppercase;
@@ -223,6 +212,58 @@
             margin-bottom: 0.4rem;
         }
 
+        /* --- STYLES BAR INDIKATOR PROGRES SILA --- */
+        .sila-progress-box {
+            background-color: var(--bar-bg);
+            padding: 1.2rem;
+            border-radius: 16px;
+            margin: 1rem 0 1.5rem 0;
+            border: 1px solid var(--ocean-border);
+        }
+
+        .sila-progress-box h3 {
+            font-size: 0.95rem;
+            color: var(--ocean-primary);
+            font-family: 'Fredoka', cursive;
+            margin-bottom: 0.8rem;
+        }
+
+        .bar-item {
+            margin-bottom: 0.6rem;
+        }
+
+        .bar-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .bar-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .bar-track {
+            height: 10px;
+            background-color: var(--ocean-border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Tag Warna-Warni Tiap Sila */
+        .color-sila1 { background-color: #ff6b6b; }
+        .color-sila2 { background-color: #fca311; }
+        .color-sila3 { background-color: #2ec4b6; }
+        .color-sila4 { background-color: #4ea8de; }
+        .color-sila5 { background-color: #9d4edd; }
+
         footer {
             text-align: center;
             margin-top: 3.5rem;
@@ -234,7 +275,6 @@
 </head>
 <body>
 
-    <!-- Animasi Gelembung Laut Melayang -->
     <div class="bubbles-container">
         <div class="bubble"></div>
         <div class="bubble"></div>
@@ -245,7 +285,6 @@
         <div class="bubble"></div>
     </div>
 
-    <!-- Tombol Mode Laut Dalam (Deep Sea Mode) -->
     <button class="theme-toggle-btn" onclick="toggleDeepSeaMode()">
         <span id="theme-icon">🌊</span> <span id="theme-text">Deep Sea Mode</span>
     </button>
@@ -253,7 +292,7 @@
     <header>
         <div class="ocean-icon">🌊 🐠 🐙</div>
         <h1>Buku Kebaikan & Analisis Pancasila</h1>
-        <p>Nama: Aurel Marsiva &nbsp;🐬&nbsp; Kelas: XI.6 &nbsp;🐬&nbsp; Tugas Agama & Pancasila</p>
+        <p>Nama: Aurel Marsiva &nbsp;🐬&nbsp; Kelas: XI.6 &nbsp;🐬&nbsp; Tugas PKN</p>
     </header>
 
     <div class="container">
@@ -262,6 +301,23 @@
         <div class="card">
             <span class="badge-ocean">🐚 Kebaikan 1</span>
             <h2>Tidak Menyontek Saat Ulangan</h2>
+
+            <!-- Bar Indikator Pancasila -->
+            <div class="sila-progress-box">
+                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 1 (Ketuhanan & Moral Kejujuran)</span><span>95%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila1" style="width: 95%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 5 (Keadilan Hasil Usaha)</span><span>80%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila5" style="width: 80%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 2, 3, 4 (Menghargai & Kepercayaan)</span><span>65%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 65%;"></div></div>
+                </div>
+            </div>
             
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila pertama (1), karena kebaikan ini mencerminkan kejujuran. Kejujuran merupakan nilai moral dan spiritual yang diajarkan dalam sila pertama. Kejujuran juga adalah hal yang sangat ditekankan dalam agama. Kita selalu diajar untuk berbuat jujur.</p>
@@ -278,7 +334,7 @@
             <p class="section-title">Analisis Tantangan & Peluang:</p>
             <ul>
                 <li><strong>Tantangan:</strong> Karena banyak orang yang mau mendapatkan nilai bagus tapi tidak mau belajar sehingga caranya adalah menyontek. Selain itu, terkadang kita juga bisa terpengaruh oleh teman untuk menyontek.</li>
-                <li><strong>Peluang:</strong> Kita bisa belajar lebih rajin dengan mencari latihan soal di interner dan menonton video tutorial. Kita juga bisa saling mengingatkan dengan orang agar tidak menyontek dengan cara membuat slogan unik serta kreatif di media sosial. Dengan begitu, kita bisa mendapatkan nilai dari hasil usaha kita sendiri.</li>
+                <li><strong>Peluang:</strong> Kita bisa belajar lebih rajin dengan mencari latihan soal di internet dan menonton video tutorial. Kita juga bisa saling mengingatkan dengan orang agar tidak menyontek dengan cara membuat slogan unik serta kreatif di media sosial. Dengan begitu, kita bisa mendapatkan nilai dari hasil usaha kita sendiri.</li>
             </ul>
         </div>
 
@@ -286,7 +342,24 @@
         <div class="card">
             <span class="badge-ocean">🪸 Kebaikan 2</span>
             <h2>Menunggu Teman untuk Pergi Makan Bersama</h2>
-            
+
+            <!-- Bar Indikator Pancasila -->
+            <div class="sila-progress-box">
+                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 3 (Persatuan & Kebersamaan)</span><span>95%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 95%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 2 (Kemanusiaan & Empati)</span><span>85%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila2" style="width: 85%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 1, 4, 5 (Kepedulian & Keadilan)</span><span>70%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila4" style="width: 70%;"></div></div>
+                </div>
+            </div>
+
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan adalah sila ketiga (3), karena kebaikan ini mengajarkan kita untuk selalu menjaga kebersamaan, kesatuan, dan solidaritas. Seperti sila ketiga mengajarkan kita untuk mementingkan kebersamaan dan kenyamanan bersama di atas ego pribadi.</p>
 
@@ -310,7 +383,24 @@
         <div class="card">
             <span class="badge-ocean">🐬 Kebaikan 3</span>
             <h2>Selalu Mengerjakan Piket Kamar dan Kelas</h2>
-            
+
+            <!-- Bar Indikator Pancasila -->
+            <div class="sila-progress-box">
+                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 5 (Keadilan & Kewajiban)</span><span>95%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila5" style="width: 95%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 3 (Kerja Sama & Gotong Royong)</span><span>85%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 85%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 1, 2, 4 (Tanggung Jawab & Kesepakatan)</span><span>75%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila1" style="width: 75%;"></div></div>
+                </div>
+            </div>
+
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila kelima (5), karena kebaikan ini mengajarkan kita untuk mengerjakan kewajiban kita. Kewajiban kita dalam piket adalah pembagian tugas yang telah dibagi secara adil. Sehingga kebaikan ini mencerminkan keadilan.</p>
 
@@ -334,7 +424,24 @@
         <div class="card">
             <span class="badge-ocean">🦀 Kebaikan 4</span>
             <h2>Membagi Snack kepada Teman</h2>
-            
+
+            <!-- Bar Indikator Pancasila -->
+            <div class="sila-progress-box">
+                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 2 (Kemanusiaan & Kepedulian)</span><span>95%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila2" style="width: 95%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 3 (Mempererat Pertemanan)</span><span>85%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 85%;"></div></div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-info"><span>Sila 1, 4, 5 (Perbuatan Baik & Berbagi)</span><span>70%</span></div>
+                    <div class="bar-track"><div class="bar-fill color-sila5" style="width: 70%;"></div></div>
+                </div>
+            </div>
+
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila kedua (2), karena kebaikan ini mencerminkan rasa peduli dan menghargai sesama. Membagi snack kepada teman juga menunjukkan bahwa kita tidak hanya memikirkan diri sendiri tetapi juga memikirkan orang lain.</p>
 
@@ -357,10 +464,9 @@
     </div>
 
     <footer>
-        <p>🌊 Tugas Pendidikan Agama & Pancasila 🌊</p>
+        <p>🌊 Tugas PKN 🌊</p>
     </footer>
 
-    <!-- Script Pengendali Mode Gelap/Terang Laut -->
     <script>
         function toggleDeepSeaMode() {
             document.body.classList.toggle('deep-sea-mode');
