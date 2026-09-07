@@ -15,20 +15,6 @@
             --ocean-border: #b2ebf2;
             --text-dark: #004d40;
             --text-sub: #00695c;
-            --shadow-color: rgba(77, 208, 225, 0.3);
-            --bubble-color: rgba(38, 198, 218, 0.35);
-        }
-
-        body.deep-sea-mode {
-            --bg-color: #002333;
-            --card-bg: #003547;
-            --ocean-primary: #4dd0e1;
-            --ocean-soft: #80deea;
-            --ocean-border: #004d61;
-            --text-dark: #e0f7fa;
-            --text-sub: #b2ebf2;
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --bubble-color: rgba(77, 208, 225, 0.25);
         }
 
         * {
@@ -43,84 +29,18 @@
             color: var(--text-dark);
             padding: 2rem 1rem;
             line-height: 1.6;
-            transition: background-color 0.4s ease, color 0.4s ease;
-            position: relative;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .bubbles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .bubble {
-            position: absolute;
-            bottom: -50px;
-            background-color: var(--bubble-color);
-            border-radius: 50%;
-            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5);
-            animation: rise 10s infinite linear;
-        }
-
-        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
-        .bubble:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
-        .bubble:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 10s; animation-delay: 2s; }
-        .bubble:nth-child(4) { width: 30px; height: 30px; left: 50%; animation-duration: 7s; animation-delay: 0s; }
-        .bubble:nth-child(5) { width: 25px; height: 25px; left: 65%; animation-duration: 6s; animation-delay: 3s; }
-        .bubble:nth-child(6) { width: 45px; height: 45px; left: 80%; animation-duration: 9s; animation-delay: 1s; }
-        .bubble:nth-child(7) { width: 15px; height: 15px; left: 90%; animation-duration: 4s; animation-delay: 2s; }
-
-        @keyframes rise {
-            0% { transform: translateY(0) scale(0.8); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; }
-            100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
-        }
-
-        .theme-toggle-btn {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 100;
-            background: var(--card-bg);
-            border: 2px solid var(--ocean-soft);
-            color: var(--ocean-primary);
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            font-weight: bold;
-            font-family: 'Fredoka', cursive;
-            cursor: pointer;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .theme-toggle-btn:hover {
-            transform: scale(1.05);
-            background-color: var(--ocean-soft);
-            color: #ffffff;
         }
 
         header {
             text-align: center;
-            background: var(--card-bg);
+            background: #ffffff;
             padding: 2rem 1.5rem;
             border-radius: 25px;
-            border: 3px dashed var(--ocean-soft);
+            border: 3px dashed #4dd0e1;
             max-width: 850px;
-            margin: 0 auto 1.5rem auto;
+            margin: 0 auto 2.5rem auto;
             position: relative;
-            box-shadow: 0 8px 20px var(--shadow-color);
-            transition: background-color 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 8px 20px rgba(77, 208, 225, 0.3);
         }
 
         .ocean-icon {
@@ -141,58 +61,6 @@
             font-size: 1rem;
         }
 
-        /* AREA FILTER DAN PENCARIAN */
-        .filter-section {
-            max-width: 850px;
-            margin: 0 auto 2rem auto;
-            background: var(--card-bg);
-            padding: 1.2rem;
-            border-radius: 20px;
-            border: 2px solid var(--ocean-border);
-            box-shadow: 0 4px 12px var(--shadow-color);
-            text-align: center;
-        }
-
-        .search-input {
-            width: 100%;
-            max-width: 400px;
-            padding: 0.7rem 1.2rem;
-            border-radius: 25px;
-            border: 2px solid var(--ocean-soft);
-            outline: none;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            text-align: center;
-        }
-
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .filter-btn {
-            background-color: var(--bg-color);
-            border: 2px solid var(--ocean-soft);
-            color: var(--ocean-primary);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-family: 'Fredoka', cursive;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--ocean-primary);
-            color: #ffffff;
-            border-color: var(--ocean-primary);
-        }
-
         .container {
             max-width: 850px;
             margin: 0 auto;
@@ -206,17 +74,13 @@
             padding: 2rem;
             border: 2px solid var(--ocean-border);
             position: relative;
-            box-shadow: 0 6px 15px var(--shadow-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
-        }
-
-        .card.hidden {
-            display: none;
+            box-shadow: 0 6px 15px rgba(38, 198, 218, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 10px 25px var(--shadow-color);
+            box-shadow: 0 10px 25px rgba(0, 131, 143, 0.25);
             border-color: var(--ocean-soft);
         }
 
@@ -230,7 +94,7 @@
             font-weight: bold;
             font-family: 'Fredoka', cursive;
             margin-bottom: 1rem;
-            box-shadow: 0 3px 8px var(--shadow-color);
+            box-shadow: 0 3px 8px rgba(0, 131, 143, 0.3);
         }
 
         h2 {
@@ -239,13 +103,13 @@
             font-family: 'Fredoka', cursive;
             margin-bottom: 1rem;
             padding-bottom: 6px;
-            border-bottom: 2px dotted var(--ocean-soft);
+            border-bottom: 2px dotted #4dd0e1;
         }
 
         .section-title {
             font-weight: 700;
             color: var(--ocean-primary);
-            margin-top: 1.2rem;
+            margin-top: 1rem;
             margin-bottom: 0.3rem;
             font-size: 0.95rem;
             text-transform: uppercase;
@@ -277,43 +141,16 @@
 </head>
 <body>
 
-    <div class="bubbles-container">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-    </div>
-
-    <button class="theme-toggle-btn" onclick="toggleDeepSeaMode()">
-        <span id="theme-icon">🌊</span> <span id="theme-text">Deep Sea Mode</span>
-    </button>
-
     <header>
         <div class="ocean-icon">🌊 🐠 🐙</div>
         <h1>Buku Kebaikan & Analisis Pancasila</h1>
-        <p>Nama: Aurel Marsiva &nbsp;🐬&nbsp; Kelas: XI.6 &nbsp;🐬&nbsp; Tugas PKN</p>
+        <p>Nama: [Nama Kamu] &nbsp;🐬&nbsp; Kelas: [Kelas Kamu] &nbsp;🐬&nbsp; Tugas Agama & Pancasila</p>
     </header>
-
-    <!-- KOTAK PENCARIAN & FILTER SILA -->
-    <div class="filter-section">
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cari kata kunci kebaikan..." onkeyup="filterCards()">
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterSila('all', this)">Semua Sila</button>
-            <button class="filter-btn" onclick="filterSila('sila1', this)">Sila 1</button>
-            <button class="filter-btn" onclick="filterSila('sila2', this)">Sila 2</button>
-            <button class="filter-btn" onclick="filterSila('sila3', this)">Sila 3</button>
-            <button class="filter-btn" onclick="filterSila('sila4', this)">Sila 4</button>
-            <button class="filter-btn" onclick="filterSila('sila5', this)">Sila 5</button>
-        </div>
-    </div>
 
     <div class="container">
 
         <!-- KEBAIKAN 1 -->
-        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
+        <div class="card">
             <span class="badge-ocean">🐚 Kebaikan 1</span>
             <h2>Tidak Menyontek Saat Ulangan</h2>
             
@@ -332,15 +169,15 @@
             <p class="section-title">Analisis Tantangan & Peluang:</p>
             <ul>
                 <li><strong>Tantangan:</strong> Karena banyak orang yang mau mendapatkan nilai bagus tapi tidak mau belajar sehingga caranya adalah menyontek. Selain itu, terkadang kita juga bisa terpengaruh oleh teman untuk menyontek.</li>
-                <li><strong>Peluang:</strong> Kita bisa belajar lebih rajin dengan mencari latihan soal di internet dan menonton video tutorial. Kita juga bisa saling mengingatkan dengan orang agar tidak menyontek dengan cara membuat slogan unik serta kreatif di media sosial. Dengan begitu, kita bisa mendapatkan nilai dari hasil usaha kita sendiri.</li>
+                <li><strong>Peluang:</strong> Kita bisa belajar lebih rajin dengan mencari latihan soal di interner dan menonton video tutorial. Kita juga bisa saling mengingatkan dengan orang agar tidak menyontek dengan cara membuat slogan unik serta kreatif di media sosial. Dengan begitu, kita bisa mendapatkan nilai dari hasil usaha kita sendiri.</li>
             </ul>
         </div>
 
         <!-- KEBAIKAN 2 -->
-        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
+        <div class="card">
             <span class="badge-ocean">🪸 Kebaikan 2</span>
             <h2>Menunggu Teman untuk Pergi Makan Bersama</h2>
-
+            
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan adalah sila ketiga (3), karena kebaikan ini mengajarkan kita untuk selalu menjaga kebersamaan, kesatuan, dan solidaritas. Seperti sila ketiga mengajarkan kita untuk mementingkan kebersamaan dan kenyamanan bersama di atas ego pribadi.</p>
 
@@ -361,10 +198,10 @@
         </div>
 
         <!-- KEBAIKAN 3 -->
-        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
+        <div class="card">
             <span class="badge-ocean">🐬 Kebaikan 3</span>
             <h2>Selalu Mengerjakan Piket Kamar dan Kelas</h2>
-
+            
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila kelima (5), karena kebaikan ini mengajarkan kita untuk mengerjakan kewajiban kita. Kewajiban kita dalam piket adalah pembagian tugas yang telah dibagi secara adil. Sehingga kebaikan ini mencerminkan keadilan.</p>
 
@@ -385,10 +222,10 @@
         </div>
 
         <!-- KEBAIKAN 4 -->
-        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
+        <div class="card">
             <span class="badge-ocean">🦀 Kebaikan 4</span>
             <h2>Membagi Snack kepada Teman</h2>
-
+            
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila kedua (2), karena kebaikan ini mencerminkan rasa peduli dan menghargai sesama. Membagi snack kepada teman juga menunjukkan bahwa kita tidak hanya memikirkan diri sendiri tetapi juga memikirkan orang lain.</p>
 
@@ -411,60 +248,8 @@
     </div>
 
     <footer>
-        <p>🌊 Tugas PKN 🌊</p>
+        <p>🌊 Tugas Pendidikan Agama & Pancasila 🌊</p>
     </footer>
-
-    <!-- SCRIPT FILTER DAN SEARCH -->
-    <script>
-        let currentSilaFilter = 'all';
-
-        function filterSila(sila, btnElement) {
-            currentSilaFilter = sila;
-            
-            // Mengatur status aktif tombol
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-
-            applyFilters();
-        }
-
-        function filterCards() {
-            applyFilters();
-        }
-
-        function applyFilters() {
-            const searchVal = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-
-            cards.forEach(card => {
-                const cardText = card.innerText.toLowerCase();
-                const cardSila = card.getAttribute('data-sila');
-
-                const matchesSearch = cardText.includes(searchVal);
-                const matchesSila = (currentSilaFilter === 'all') || cardSila.includes(currentSilaFilter);
-
-                if (matchesSearch && matchesSila) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        }
-
-        function toggleDeepSeaMode() {
-            document.body.classList.toggle('deep-sea-mode');
-            const icon = document.getElementById('theme-icon');
-            const text = document.getElementById('theme-text');
-            
-            if (document.body.classList.contains('deep-sea-mode')) {
-                icon.textContent = '☀️';
-                text.textContent = 'Shallow Sea Mode';
-            } else {
-                icon.textContent = '🌊';
-                text.textContent = 'Deep Sea Mode';
-            }
-        }
-    </script>
 
 </body>
 </html>
