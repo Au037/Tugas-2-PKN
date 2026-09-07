@@ -15,6 +15,21 @@
             --ocean-border: #b2ebf2;
             --text-dark: #004d40;
             --text-sub: #00695c;
+            --shadow-color: rgba(77, 208, 225, 0.3);
+            --bubble-color: rgba(38, 198, 218, 0.35);
+        }
+
+        /* Deep Sea Mode (Dark Mode) Theme Variables */
+        body.deep-sea-mode {
+            --bg-color: #002333;
+            --card-bg: #003547;
+            --ocean-primary: #4dd0e1;
+            --ocean-soft: #80deea;
+            --ocean-border: #004d61;
+            --text-dark: #e0f7fa;
+            --text-sub: #b2ebf2;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --bubble-color: rgba(77, 208, 225, 0.25);
         }
 
         * {
@@ -29,18 +44,96 @@
             color: var(--text-dark);
             padding: 2rem 1rem;
             line-height: 1.6;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Container Animasi Gelembung Laut */
+        .bubbles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background-color: var(--bubble-color);
+            border-radius: 50%;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5);
+            animation: rise 10s infinite linear;
+        }
+
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+        .bubble:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+        .bubble:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 10s; animation-delay: 2s; }
+        .bubble:nth-child(4) { width: 30px; height: 30px; left: 50%; animation-duration: 7s; animation-delay: 0s; }
+        .bubble:nth-child(5) { width: 25px; height: 25px; left: 65%; animation-duration: 6s; animation-delay: 3s; }
+        .bubble:nth-child(6) { width: 45px; height: 45px; left: 80%; animation-duration: 9s; animation-delay: 1s; }
+        .bubble:nth-child(7) { width: 15px; height: 15px; left: 90%; animation-duration: 4s; animation-delay: 2s; }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Tombol Switch Deep Sea Mode */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            background: var(--card-bg);
+            border: 2px solid var(--ocean-soft);
+            color: var(--ocean-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            font-family: 'Fredoka', cursive;
+            cursor: pointer;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
+            background-color: var(--ocean-soft);
+            color: #ffffff;
         }
 
         header {
             text-align: center;
-            background: #ffffff;
+            background: var(--card-bg);
             padding: 2rem 1.5rem;
             border-radius: 25px;
-            border: 3px dashed #4dd0e1;
+            border: 3px dashed var(--ocean-soft);
             max-width: 850px;
             margin: 0 auto 2.5rem auto;
             position: relative;
-            box-shadow: 0 8px 20px rgba(77, 208, 225, 0.3);
+            box-shadow: 0 8px 20px var(--shadow-color);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .ocean-icon {
@@ -74,13 +167,13 @@
             padding: 2rem;
             border: 2px solid var(--ocean-border);
             position: relative;
-            box-shadow: 0 6px 15px rgba(38, 198, 218, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(0, 131, 143, 0.25);
+            box-shadow: 0 10px 25px var(--shadow-color);
             border-color: var(--ocean-soft);
         }
 
@@ -94,7 +187,7 @@
             font-weight: bold;
             font-family: 'Fredoka', cursive;
             margin-bottom: 1rem;
-            box-shadow: 0 3px 8px rgba(0, 131, 143, 0.3);
+            box-shadow: 0 3px 8px var(--shadow-color);
         }
 
         h2 {
@@ -103,7 +196,7 @@
             font-family: 'Fredoka', cursive;
             margin-bottom: 1rem;
             padding-bottom: 6px;
-            border-bottom: 2px dotted #4dd0e1;
+            border-bottom: 2px dotted var(--ocean-soft);
         }
 
         .section-title {
@@ -141,10 +234,26 @@
 </head>
 <body>
 
+    <!-- Animasi Gelembung Laut Melayang -->
+    <div class="bubbles-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Tombol Mode Laut Dalam (Deep Sea Mode) -->
+    <button class="theme-toggle-btn" onclick="toggleDeepSeaMode()">
+        <span id="theme-icon">🌊</span> <span id="theme-text">Deep Sea Mode</span>
+    </button>
+
     <header>
         <div class="ocean-icon">🌊 🐠 🐙</div>
         <h1>Buku Kebaikan & Analisis Pancasila</h1>
-        <p>Nama: [Nama Kamu] &nbsp;🐬&nbsp; Kelas: [Kelas Kamu] &nbsp;🐬&nbsp; Tugas Agama & Pancasila</p>
+        <p>Nama: Aurel Marsiva &nbsp;🐬&nbsp; Kelas: XI.6 &nbsp;🐬&nbsp; Tugas Agama & Pancasila</p>
     </header>
 
     <div class="container">
@@ -250,6 +359,23 @@
     <footer>
         <p>🌊 Tugas Pendidikan Agama & Pancasila 🌊</p>
     </footer>
+
+    <!-- Script Pengendali Mode Gelap/Terang Laut -->
+    <script>
+        function toggleDeepSeaMode() {
+            document.body.classList.toggle('deep-sea-mode');
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (document.body.classList.contains('deep-sea-mode')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Shallow Sea Mode';
+            } else {
+                icon.textContent = '🌊';
+                text.textContent = 'Deep Sea Mode';
+            }
+        }
+    </script>
 
 </body>
 </html>
