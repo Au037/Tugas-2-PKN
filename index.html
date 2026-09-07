@@ -17,7 +17,6 @@
             --text-sub: #00695c;
             --shadow-color: rgba(77, 208, 225, 0.3);
             --bubble-color: rgba(38, 198, 218, 0.35);
-            --bar-bg: #e0f2f1;
         }
 
         body.deep-sea-mode {
@@ -30,7 +29,6 @@
             --text-sub: #b2ebf2;
             --shadow-color: rgba(0, 0, 0, 0.5);
             --bubble-color: rgba(77, 208, 225, 0.25);
-            --bar-bg: #002b3d;
         }
 
         * {
@@ -119,7 +117,7 @@
             border-radius: 25px;
             border: 3px dashed var(--ocean-soft);
             max-width: 850px;
-            margin: 0 auto 2.5rem auto;
+            margin: 0 auto 1.5rem auto;
             position: relative;
             box-shadow: 0 8px 20px var(--shadow-color);
             transition: background-color 0.4s ease, border-color 0.4s ease;
@@ -143,6 +141,58 @@
             font-size: 1rem;
         }
 
+        /* AREA FILTER DAN PENCARIAN */
+        .filter-section {
+            max-width: 850px;
+            margin: 0 auto 2rem auto;
+            background: var(--card-bg);
+            padding: 1.2rem;
+            border-radius: 20px;
+            border: 2px solid var(--ocean-border);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            border: 2px solid var(--ocean-soft);
+            outline: none;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-color);
+            border: 2px solid var(--ocean-soft);
+            color: var(--ocean-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-family: 'Fredoka', cursive;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--ocean-primary);
+            color: #ffffff;
+            border-color: var(--ocean-primary);
+        }
+
         .container {
             max-width: 850px;
             margin: 0 auto;
@@ -158,6 +208,10 @@
             position: relative;
             box-shadow: 0 6px 15px var(--shadow-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        .card.hidden {
+            display: none;
         }
 
         .card:hover {
@@ -212,58 +266,6 @@
             margin-bottom: 0.4rem;
         }
 
-        /* --- STYLES BAR INDIKATOR PROGRES SILA --- */
-        .sila-progress-box {
-            background-color: var(--bar-bg);
-            padding: 1.2rem;
-            border-radius: 16px;
-            margin: 1rem 0 1.5rem 0;
-            border: 1px solid var(--ocean-border);
-        }
-
-        .sila-progress-box h3 {
-            font-size: 0.95rem;
-            color: var(--ocean-primary);
-            font-family: 'Fredoka', cursive;
-            margin-bottom: 0.8rem;
-        }
-
-        .bar-item {
-            margin-bottom: 0.6rem;
-        }
-
-        .bar-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .bar-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 3px;
-        }
-
-        .bar-track {
-            height: 10px;
-            background-color: var(--ocean-border);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .bar-fill {
-            height: 100%;
-            border-radius: 10px;
-            transition: width 1s ease-in-out;
-        }
-
-        /* Tag Warna-Warni Tiap Sila */
-        .color-sila1 { background-color: #ff6b6b; }
-        .color-sila2 { background-color: #fca311; }
-        .color-sila3 { background-color: #2ec4b6; }
-        .color-sila4 { background-color: #4ea8de; }
-        .color-sila5 { background-color: #9d4edd; }
-
         footer {
             text-align: center;
             margin-top: 3.5rem;
@@ -295,29 +297,25 @@
         <p>Nama: Aurel Marsiva &nbsp;🐬&nbsp; Kelas: XI.6 &nbsp;🐬&nbsp; Tugas PKN</p>
     </header>
 
+    <!-- KOTAK PENCARIAN & FILTER SILA -->
+    <div class="filter-section">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cari kata kunci kebaikan..." onkeyup="filterCards()">
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterSila('all', this)">Semua Sila</button>
+            <button class="filter-btn" onclick="filterSila('sila1', this)">Sila 1</button>
+            <button class="filter-btn" onclick="filterSila('sila2', this)">Sila 2</button>
+            <button class="filter-btn" onclick="filterSila('sila3', this)">Sila 3</button>
+            <button class="filter-btn" onclick="filterSila('sila4', this)">Sila 4</button>
+            <button class="filter-btn" onclick="filterSila('sila5', this)">Sila 5</button>
+        </div>
+    </div>
+
     <div class="container">
 
         <!-- KEBAIKAN 1 -->
-        <div class="card">
+        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
             <span class="badge-ocean">🐚 Kebaikan 1</span>
             <h2>Tidak Menyontek Saat Ulangan</h2>
-
-            <!-- Bar Indikator Pancasila -->
-            <div class="sila-progress-box">
-                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 1 (Ketuhanan & Moral Kejujuran)</span><span>95%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila1" style="width: 95%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 5 (Keadilan Hasil Usaha)</span><span>80%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila5" style="width: 80%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 2, 3, 4 (Menghargai & Kepercayaan)</span><span>65%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 65%;"></div></div>
-                </div>
-            </div>
             
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila pertama (1), karena kebaikan ini mencerminkan kejujuran. Kejujuran merupakan nilai moral dan spiritual yang diajarkan dalam sila pertama. Kejujuran juga adalah hal yang sangat ditekankan dalam agama. Kita selalu diajar untuk berbuat jujur.</p>
@@ -339,26 +337,9 @@
         </div>
 
         <!-- KEBAIKAN 2 -->
-        <div class="card">
+        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
             <span class="badge-ocean">🪸 Kebaikan 2</span>
             <h2>Menunggu Teman untuk Pergi Makan Bersama</h2>
-
-            <!-- Bar Indikator Pancasila -->
-            <div class="sila-progress-box">
-                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 3 (Persatuan & Kebersamaan)</span><span>95%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 95%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 2 (Kemanusiaan & Empati)</span><span>85%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila2" style="width: 85%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 1, 4, 5 (Kepedulian & Keadilan)</span><span>70%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila4" style="width: 70%;"></div></div>
-                </div>
-            </div>
 
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan adalah sila ketiga (3), karena kebaikan ini mengajarkan kita untuk selalu menjaga kebersamaan, kesatuan, dan solidaritas. Seperti sila ketiga mengajarkan kita untuk mementingkan kebersamaan dan kenyamanan bersama di atas ego pribadi.</p>
@@ -380,26 +361,9 @@
         </div>
 
         <!-- KEBAIKAN 3 -->
-        <div class="card">
+        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
             <span class="badge-ocean">🐬 Kebaikan 3</span>
             <h2>Selalu Mengerjakan Piket Kamar dan Kelas</h2>
-
-            <!-- Bar Indikator Pancasila -->
-            <div class="sila-progress-box">
-                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 5 (Keadilan & Kewajiban)</span><span>95%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila5" style="width: 95%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 3 (Kerja Sama & Gotong Royong)</span><span>85%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 85%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 1, 2, 4 (Tanggung Jawab & Kesepakatan)</span><span>75%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila1" style="width: 75%;"></div></div>
-                </div>
-            </div>
 
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila kelima (5), karena kebaikan ini mengajarkan kita untuk mengerjakan kewajiban kita. Kewajiban kita dalam piket adalah pembagian tugas yang telah dibagi secara adil. Sehingga kebaikan ini mencerminkan keadilan.</p>
@@ -421,26 +385,9 @@
         </div>
 
         <!-- KEBAIKAN 4 -->
-        <div class="card">
+        <div class="card" data-sila="sila1 sila2 sila3 sila4 sila5">
             <span class="badge-ocean">🦀 Kebaikan 4</span>
             <h2>Membagi Snack kepada Teman</h2>
-
-            <!-- Bar Indikator Pancasila -->
-            <div class="sila-progress-box">
-                <h3>📊 Tingkat Keterkaitan Sila Pancasila:</h3>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 2 (Kemanusiaan & Kepedulian)</span><span>95%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila2" style="width: 95%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 3 (Mempererat Pertemanan)</span><span>85%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila3" style="width: 85%;"></div></div>
-                </div>
-                <div class="bar-item">
-                    <div class="bar-info"><span>Sila 1, 4, 5 (Perbuatan Baik & Berbagi)</span><span>70%</span></div>
-                    <div class="bar-track"><div class="bar-fill color-sila5" style="width: 70%;"></div></div>
-                </div>
-            </div>
 
             <p class="section-title">Sila Paling Relevan:</p>
             <p>Sila yang paling relevan dengan kebaikan ini adalah sila kedua (2), karena kebaikan ini mencerminkan rasa peduli dan menghargai sesama. Membagi snack kepada teman juga menunjukkan bahwa kita tidak hanya memikirkan diri sendiri tetapi juga memikirkan orang lain.</p>
@@ -467,7 +414,43 @@
         <p>🌊 Tugas PKN 🌊</p>
     </footer>
 
+    <!-- SCRIPT FILTER DAN SEARCH -->
     <script>
+        let currentSilaFilter = 'all';
+
+        function filterSila(sila, btnElement) {
+            currentSilaFilter = sila;
+            
+            // Mengatur status aktif tombol
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            applyFilters();
+        }
+
+        function filterCards() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const cardText = card.innerText.toLowerCase();
+                const cardSila = card.getAttribute('data-sila');
+
+                const matchesSearch = cardText.includes(searchVal);
+                const matchesSila = (currentSilaFilter === 'all') || cardSila.includes(currentSilaFilter);
+
+                if (matchesSearch && matchesSila) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
         function toggleDeepSeaMode() {
             document.body.classList.toggle('deep-sea-mode');
             const icon = document.getElementById('theme-icon');
